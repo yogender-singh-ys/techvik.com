@@ -9,8 +9,8 @@ class ArticlesController extends AppController {
 	public function admin_index(){
 		if($this->Session->read('ADMIN_USER')){
 			$this->layout = "admin_dashboard";
-			$articles = $this->Article->find('all',array('conditions'=>array('deleted'=>1)));
-			$this->set('articles',$articles);
+			$articles = $this->Article->find('all',array('conditions'=>array('deleted'=>1),'order' => array('Article.id desc')));
+			$this->set('articles',$articles); 
 		}else{
 		  return $this->redirect(array('controller' => 'pages', 'action' => 'display','admin'=>false));	
 		}

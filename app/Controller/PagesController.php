@@ -5,11 +5,28 @@ App::uses('AppController', 'Controller');
 
 class PagesController extends AppController {
 
-    public $uses = array('User');
+    public $uses = array('User','Article','Category');
+    public $components = array('Paginator');
+    
+    public $paginateArticle = array(
+        'conditions'=>array('deleted'=>1),
+        'limit' => 3,
+        'order' => array('Article.id desc')
+    );
 
 
 	public function index() { 
-		
+		//$articles = $this->Article->find('all',array('conditions'=>array('deleted'=>1),'order' => array('Article.id desc')));
+	    //$this->set('articles',$articles); 
+	    
+	    $this->Paginator->settings = $this->paginateArticle;
+
+	    $articles = $this->Paginator->paginate('Article');
+	    $this->set('articles', $articles);
+    
+	    $categories = $this->Category->find('all',array('conditions'=>array('deleted'=>1,'category_id'=>0)));
+	    $this->set('categories',$categories);
+	    //echo '<pre>'; print_r($categories); die();
 		
 	}
 	
