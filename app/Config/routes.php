@@ -24,11 +24,17 @@
  * Here, we are connecting '/' (base path) to controller called 'Pages',
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/View/Pages/home.ctp)...
- */
+ */ 
+    Router::parseExtensions('html');
+    
 	Router::connect('/', array('controller' => 'pages', 'action' => 'index'));
+	Router::connect('/c/*',array('controller' => 'pages', 'action' => 'category'));
+	
 	Router::connect('/admin', array('controller' => 'pages', 'action' => 'index','admin'=>true));
 	Router::connect('/admin/logout', array('controller' => 'pages', 'action' => 'logout','admin'=>true));
 	Router::connect('/admin/dashboard', array('controller' => 'pages', 'action' => 'dashboard','admin'=>true));
+	
+	
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */

@@ -5,7 +5,7 @@ App::uses('AppController', 'Controller');
 
 class PagesController extends AppController {
 
-    public $uses = array('User','Article','Category');
+    public $uses = array('User','Article','Category','ArticleCategory');
     public $components = array('Paginator');
     
     public $paginateArticle = array(
@@ -15,19 +15,47 @@ class PagesController extends AppController {
     );
 
 
-	public function index() { 
-		//$articles = $this->Article->find('all',array('conditions'=>array('deleted'=>1),'order' => array('Article.id desc')));
-	    //$this->set('articles',$articles); 
-	    
+	public function index() {  
 	    $this->Paginator->settings = $this->paginateArticle;
+	    $this->Paginator->settings['paramType'] = 'querystring';
 
 	    $articles = $this->Paginator->paginate('Article');
 	    $this->set('articles', $articles);
     
 	    $categories = $this->Category->find('all',array('conditions'=>array('deleted'=>1,'category_id'=>0)));
 	    $this->set('categories',$categories);
-	    //echo '<pre>'; print_r($categories); die();
-		
+	}
+	
+	public function display(){
+		return $this->redirect(array('controller' => 'pages', 'action' => 'index','admin'=>false)); 
+	}
+	
+	public function category($slug){
+		if(!empty($slug)){
+			$categoryData = $this->Category->find('first',array('conditions'=>array('deleted'=>1,'alias'=>$slug)));
+			if(!empty($categoryData)){
+				// calculate $categories and subcategories
+				$categoryIdArray = array();
+				$categoryIdArray[] = $categoryData['Category']['id'];
+				foreach($categoryData['Categories'] as $subCategory ){
+					$categoryIdArray[] = $subCategory['id'];
+				}
+				// get all article ids for $categoryIdArray category ids
+				$articleIds = $this->ArticleCategory->find('list',array('conditions'=>array('ArticleCategory.category_id'=>$categoryIdArray),'fields'=>array('article_id')));
+				$this->paginateArticle['conditions'] = array('deleted'=>1,'id'=>$articleIds);
+				$this->Paginator->settings = $this->paginateArticle;
+				$articles = $this->Paginator->paginate('Article');
+			    $this->set('articles', $articles);
+		    
+			    $categories = $this->Category->find('all',array('conditions'=>array('deleted'=>1,'category_id'=>0)));
+			    $this->set('categories',$categories);
+				
+			}else{
+				return $this->redirect(array('controller' => 'pages', 'action' => 'index','admin'=>false)); 
+			}
+		}else{
+			return $this->redirect(array('controller' => 'pages', 'action' => 'index','admin'=>false)); 
+		}
 	}
 	
 	public function admin_index(){

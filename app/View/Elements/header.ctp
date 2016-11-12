@@ -25,9 +25,9 @@
 
   <?php foreach($categories as $category){ ?>
    <div style="border-bottom: 1px solid #ccc">
-     <?php echo $this->Html->link($category['Category']['name'],array('controller' => 'articles','action' => 'delete/'.$article['Article']['id'],'admin' => true),array('class'=>'mdl-navigation__link')); ?>
+     <?php echo $this->Html->link($category['Category']['name'],array('controller' => 'pages','action' => 'category',$category['Category']['alias'],'admin' => false,'ext' => 'html'),array('class'=>'mdl-navigation__link')); ?>
 	 <?php foreach($category['Categories'] as $c ){ ?>
-	    <?php echo $this->Html->link('→ '.$c['name'],array('controller' => 'articles','action' => 'delete/'.$article['Article']['id'],'admin' => true),array('class'=>'mdl-navigation__link','style'=>'font-size: 12px;')); ?>
+	    <?php echo $this->Html->link('→ '.$c['name'],array('controller' => 'pages','action' => 'category',$c['alias'],'admin' => false,'ext' => 'html'),array('class'=>'mdl-navigation__link','style'=>'font-size: 12px;')); ?>
 	 <?php } ?>	
    </div>	 							
   <?php } ?>
