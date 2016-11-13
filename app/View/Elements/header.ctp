@@ -13,8 +13,10 @@
       <i class="material-icons">search</i>
     </label>
     <div class="mdl-textfield__expandable-holder">
-      <input class="mdl-textfield__input" type="text" name="sample"
-             id="fixed-header-drawer-exp">
+      <?php echo $this->Form->create('Search', array('url' => array('controller' => 'pages', 'action' => 'search','admin'=>false),'type' => 'get')); ?>
+        <?php echo $this->Form->input('k', array('type' => 'text',"label"=>false,"div"=>false,"id"=>"fixed-header-drawer-exp","class"=>"mdl-textfield__input"));  ?>
+        <input type="submit" style="display: none" />
+      <?php echo $this->Form->end(); ?>  
     </div>
   </div>
 </div>

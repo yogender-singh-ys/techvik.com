@@ -47,7 +47,9 @@
 	            </div>  -->
 	             <div class="mdl-mega-footer__bottom-section">
 				    <ul class="mdl-mega-footer__link-list">
-				      <li><a href="#">Help</a></li>
+				      <li>
+				      	<?= $this->Html->link('Contact us',array('controller'=>'pages','action'=>'contact','ext'=>'html')) ?>
+				      </li>
 				      <li><a href="#">Privacy & Terms</a></li>
 				    </ul>
 			     </div>

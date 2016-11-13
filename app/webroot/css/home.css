@@ -1,3 +1,17 @@
+.contact_bg{
+	 background-image: url(contact_us_bg_green.jpg);
+	 background-position-y: center;
+     background-size: cover;
+     min-height: 250px;
+}
+.contact_title,.contact_subtitle{
+	color: #ffffff;
+}
+.contact_title{
+	width: 100%;
+	font-size: 55px;
+	margin-top: 50px;
+}
 .portfolio-header {
   position: relative;
   background-image: url(images/header-bg.jpg);

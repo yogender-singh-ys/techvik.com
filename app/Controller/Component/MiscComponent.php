@@ -32,7 +32,7 @@ class MiscComponent extends Component {
 	  return $text;
 	}
 	
-	public function validateData($data,$emptyData=array(),$numericData=array())
+	public function validateData($data,$emptyData=array(),$numericData=array(),$emailChecks=array())
 	{
 		$error_msg = array();
 		// empty data check
@@ -55,6 +55,13 @@ class MiscComponent extends Component {
 				$error_msg[] = $emptyData[$key]." must have numeric value";
 			}
 		   } 
+		}
+		
+		// numeric data check 
+		foreach ($emailChecks as $key => $value ){
+			if (!filter_var($data[$key], FILTER_VALIDATE_EMAIL)) { 
+			  $error_msg[] = $emailChecks[$key]." must have be valid.";
+			}
 		}
 		
 		return $error_msg;

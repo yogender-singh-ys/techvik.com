@@ -1,0 +1,1 @@
+<div style="width: 100%; max-width: 640px;margin: 0 auto; background-color: #FFF9C4; padding: 16px; border-radius: 2px; color: #212121;" ><?php echo $message; ?></div>

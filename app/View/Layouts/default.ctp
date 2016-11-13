@@ -9,6 +9,7 @@
 		
 		<?php echo $this->Html->css('material.indigo-deep_purple.min'); ?>
 		<?php echo $this->Html->script('material.min'); ?>
+		<?php echo $this->Html->script('jquery'); ?>
         
         <?php echo $this->Html->css('home'); ?>
         <style>
@@ -17,6 +18,14 @@
 			cursor: text;
 		}
 		</style>
+		<script>
+			$( document ).ready(function() {
+			  
+			   if($('main').height() < $(window).height() ){
+			   	 $('.page-content').css({'min-height': ($(window).height()-$('footer').height())+'px'});
+			   }
+			});
+		</script>
     </head>
 
     <body>

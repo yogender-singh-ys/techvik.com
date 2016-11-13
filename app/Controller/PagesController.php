@@ -5,12 +5,12 @@ App::uses('AppController', 'Controller');
 
 class PagesController extends AppController {
 
-    public $uses = array('User','Article','Category','ArticleCategory');
-    public $components = array('Paginator');
+    public $uses = array('User','Article','Category','ArticleCategory','Query');
+    public $components = array('Paginator','Misc');
     
     public $paginateArticle = array(
         'conditions'=>array('deleted'=>1),
-        'limit' => 3,
+        'limit' => 12,
         'order' => array('Article.id desc')
     );
 
@@ -33,6 +33,7 @@ class PagesController extends AppController {
 	public function category($slug){
 		if(!empty($slug)){
 			$categoryData = $this->Category->find('first',array('conditions'=>array('deleted'=>1,'alias'=>$slug)));
+			$this->set('categoryData',$categoryData);
 			if(!empty($categoryData)){
 				// calculate $categories and subcategories
 				$categoryIdArray = array();
@@ -94,6 +95,36 @@ class PagesController extends AppController {
 		  return $this->redirect(array('controller' => 'pages', 'action' => 'display','admin'=>false));	
 		}
     }
+    
+    public function search(){
+    	if(!empty($this->request->query['k'])){
+    	    $keyword = mysql_real_escape_string($this->request->query['k']);
+			$cond=array('deleted'=>1,'OR'=>array("headline LIKE '%$keyword%'","subheadline LIKE '%$keyword%'", "content LIKE '%$keyword%'", "content LIKE '%$keyword%'", "keywords LIKE '%$keyword%'", "meta_desc LIKE '%$keyword%'", "page_title LIKE '%$keyword%'")  );
+			$this->paginateArticle['conditions'] = $cond;
+			$this->Paginator->settings = $this->paginateArticle;
+			$articles = $this->Paginator->paginate('Article');
+			$this->set('articles', $articles);
+    	}else{
+		 return $this->redirect(array('controller' => 'pages', 'action' => 'index','admin'=>false)); 	
+		}
+	}
+    
+    public function contact(){
+		$categories = $this->Category->find('all',array('conditions'=>array('deleted'=>1,'category_id'=>0)));
+	    $this->set('categories',$categories);
+	    
+	    if(!empty($this->request->data)){
+			$validatedResponse = $this->Misc->validateData($this->request->data['Query'],array('name'=>'Name','content'=>'Content','email'=>'Email Id'),array(),array('email'=>'Email Id'));  
+			if(count($validatedResponse)>0){
+			  	$this->Flash->set( ucfirst(implode('<br/>',$validatedResponse)) , array('element' => 'dialog'));	
+			}else{
+				$this->Query->create();
+				$this->Query->save($this->request->data);
+				$this->Flash->set("Thankyou for contacting us.", array('element' => 'dialog'));	
+				$this->request->data = array();
+			}
+	    }
+	} 
 }
 
 ?>
