@@ -5,7 +5,7 @@ App::uses('AppController', 'Controller');
 
 class PagesController extends AppController {
 
-    public $uses = array('User','Article','Category','ArticleCategory','Query');
+    public $uses = array('User','Article','Category','ArticleCategory','Query','Page');
     public $components = array('Paginator','Misc');
     
     public $paginateArticle = array(
@@ -125,6 +125,47 @@ class PagesController extends AppController {
 			}
 	    }
 	} 
+
+    public function admin_querylisting(){
+		if($this->Session->read('ADMIN_USER')){
+			$this->layout = "admin_dashboard";
+			$queries = $this->Query->find('all');
+			$this->set('queries',$queries);
+		}else{
+		  return $this->redirect(array('controller' => 'pages', 'action' => 'display','admin'=>false));	
+		}
+	}
+
+    public function admin_deletequery($id){
+		if($this->Session->read('ADMIN_USER')){
+			$status = $this->Query->delete($id);
+			if($status){
+				$this->Flash->set( "Deleted" , array('element' => 'success'));	
+				return $this->redirect(array('controller' => 'pages', 'action' => 'querylisting','admin'=>true));	
+			}else{
+				$this->Flash->set( "Something went. Try Again !!!" , array('element' => 'warning'));	
+				return $this->redirect(array('controller' => 'pages', 'action' => 'querylisting','admin'=>true));	
+			}
+		}else{
+		  return $this->redirect(array('controller' => 'pages', 'action' => 'display','admin'=>false));	
+		}
+	}
+
+    public function admin_list() {
+        if($this->Session->read('ADMIN_USER')){
+			$this->layout = "admin_dashboard";
+			$pages = $this->Page->find('all');
+			$this->set('pages',$pages);
+		}else{
+		  return $this->redirect(array('controller' => 'pages', 'action' => 'display','admin'=>false));	
+		}
+	}
+    
+    public function admin_editpage() {
+
+	}
+
+
 }
 
 ?>

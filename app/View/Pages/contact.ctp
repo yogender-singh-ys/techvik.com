@@ -29,7 +29,7 @@
 				    <label class="mdl-textfield__label" for="sample3">Email Id</label>
 				  </div>
 				  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-				    <?php echo $this->Form->input('content', array('type' => 'textarea',"label"=>false,"div"=>false,"class"=>"mdl-textfield__input"));  ?>
+				    <?php echo $this->Form->input('query', array('type' => 'textarea',"label"=>false,"div"=>false,"class"=>"mdl-textfield__input"));  ?>
                     <label class="mdl-textfield__label" for="sample5">Text lines...</label>
 				  </div>
 				  <div class="" style="padding-top:30px;">

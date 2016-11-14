@@ -56,6 +56,10 @@
                     <li ><?php echo $this->Html->link('Categories',array('controller' => 'categories','action' => 'index','admin' => true)); ?></li>
                     
                     <li ><?php echo $this->Html->link('Articles',array('controller' => 'articles','action' => 'index','admin' => true)); ?></li>
+                    
+                    <li ><?php echo $this->Html->link('Queries',array('controller' => 'pages','action' => 'querylisting','admin' => true)); ?></li>
+                    
+                    <li ><?php echo $this->Html->link('Pages',array('controller' => 'pages','action' => 'list','admin' => true)); ?></li>
 
                 </ul>
              </div>
