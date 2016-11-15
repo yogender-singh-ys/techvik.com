@@ -112,7 +112,8 @@ class PagesController extends AppController {
     public function contact(){
 		$categories = $this->Category->find('all',array('conditions'=>array('deleted'=>1,'category_id'=>0)));
 	    $this->set('categories',$categories);
-	    
+	    $pageData = $this->Page->findById(1); // for contact-us page
+	    $this->set('pageData',$pageData);
 	    if(!empty($this->request->data)){
 			$validatedResponse = $this->Misc->validateData($this->request->data['Query'],array('name'=>'Name','content'=>'Content','email'=>'Email Id'),array(),array('email'=>'Email Id'));  
 			if(count($validatedResponse)>0){
@@ -161,11 +162,35 @@ class PagesController extends AppController {
 		}
 	}
     
-    public function admin_editpage() {
-
+    public function admin_editpage($id) {
+        if($this->Session->read('ADMIN_USER')){
+			
+			$this->layout = "admin_dashboard";
+		    // get page info
+		    $page = $this->Page->findById($id);
+		    if($page){
+		    	if(!empty($this->request->data)){
+		    		$this->request->data['Page']['name'] = $page['Page']['name'];
+					$this->Page->save($this->request->data);
+					$this->Flash->set( "Page content updated" , array('element' => 'success'));	
+				}else{
+					$this->request->data = $page;
+				}
+				
+			}else{
+				$this->Flash->set( "Something went wrong." , array('element' => 'warning'));	
+				return $this->redirect(array('controller' => 'pages', 'action' => 'list','admin'=>true));	
+			}
+			
+		}else{
+		  return $this->redirect(array('controller' => 'pages', 'action' => 'display','admin'=>false));	
+		}
 	}
 
-
+    public function terms(){
+		$pageData = $this->Page->findById(2); // for terms and condition page
+	    $this->set('pageData',$pageData);
+	}
 }
 
 ?>

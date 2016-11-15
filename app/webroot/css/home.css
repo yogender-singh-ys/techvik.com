@@ -4,6 +4,12 @@
      background-size: cover;
      min-height: 250px;
 }
+.contact_bg_2{
+	 background-image: url(contact_us_bg.jpg);
+	 background-position-y: center;
+     background-size: cover;
+     min-height: 100px;
+}
 .contact_title,.contact_subtitle{
 	color: #ffffff;
 }

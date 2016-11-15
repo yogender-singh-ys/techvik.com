@@ -40,6 +40,9 @@
              </div>
              
              <div class="mdl-cell mdl-cell--4-col">
+               <div class="mdl-cell mdl-cell--4-col">
+                <?=$pageData['Page']['content']?>
+               </div>
 			   <?php echo $this->Html->image('plane.png',array("style"=>'width: 100%'));?>
 			 </div>
 			

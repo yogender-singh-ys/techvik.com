@@ -50,7 +50,9 @@
 				      <li>
 				      	<?= $this->Html->link('Contact us',array('controller'=>'pages','action'=>'contact','ext'=>'html')) ?>
 				      </li>
-				      <li><a href="#">Privacy & Terms</a></li>
+				      <li>
+				      <?= $this->Html->link('Privacy & Terms',array('controller'=>'pages','action'=>'terms','ext'=>'html')) ?>
+				      </li>
 				    </ul>
 			     </div>
             </footer> 
