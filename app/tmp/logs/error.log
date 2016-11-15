@@ -32225,3 +32225,69 @@ Stack Trace:
 #1 F:\xampp\htdocs\techvik.com\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(PagesController), Object(CakeRequest))
 #2 F:\xampp\htdocs\techvik.com\app\webroot\index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #3 {main}
+2016-11-15 15:34:24 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /techvik.com/js/dataTables.bootstrap.js
+Stack Trace:
+#0 F:\xampp\htdocs\techvik.com\app\webroot\index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-15 15:34:25 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /techvik.com/js/admin/jquery.dataTables.min.js
+Stack Trace:
+#0 F:\xampp\htdocs\techvik.com\app\webroot\index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-15 15:34:26 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /techvik.com/js/dataTables.bootstrap.js
+Stack Trace:
+#0 F:\xampp\htdocs\techvik.com\app\webroot\index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-15 15:34:27 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /techvik.com/js/admin/jquery.dataTables.min.js
+Stack Trace:
+#0 F:\xampp\htdocs\techvik.com\app\webroot\index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-15 15:34:28 Error: [MissingViewException] View file "Pages\admin_editpage.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'Pages\\admin_editpage.ctp',
+)
+Request URL: /techvik.com/admin/pages/editpage/1
+Stack Trace:
+#0 F:\xampp\htdocs\techvik.com\lib\Cake\View\View.php(470): View->_getViewFileName(NULL)
+#1 F:\xampp\htdocs\techvik.com\lib\Cake\Controller\Controller.php(963): View->render(NULL, NULL)
+#2 F:\xampp\htdocs\techvik.com\lib\Cake\Routing\Dispatcher.php(200): Controller->render()
+#3 F:\xampp\htdocs\techvik.com\lib\Cake\Routing\Dispatcher.php(167): Dispatcher->_invoke(Object(PagesController), Object(CakeRequest))
+#4 F:\xampp\htdocs\techvik.com\app\webroot\index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2016-11-15 15:34:28 Error: [MissingControllerException] Controller class JsController could not be found.
+Exception Attributes: array (
+  'class' => 'JsController',
+  'plugin' => NULL,
+)
+Request URL: /techvik.com/js/dataTables.bootstrap.js
+Stack Trace:
+#0 F:\xampp\htdocs\techvik.com\app\webroot\index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2016-11-15 15:34:37 Error: [MissingControllerException] Controller class CssController could not be found.
+Exception Attributes: array (
+  'class' => 'CssController',
+  'plugin' => NULL,
+)
+Request URL: /techvik.com/css/images/footer-background.png
+Stack Trace:
+#0 F:\xampp\htdocs\techvik.com\app\webroot\index.php(111): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
