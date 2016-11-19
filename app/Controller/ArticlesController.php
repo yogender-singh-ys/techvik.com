@@ -276,5 +276,19 @@ class ArticlesController extends AppController {
 	   	return $this->redirect(array('controller' => 'pages', 'action' => 'display','admin'=>false));	
 	   }
 	}
+
+    public function index($slug){
+		if(!empty($slug)){
+			$articleData = $this->Article->find('first',array('conditions'=>array('deleted'=>1,'alias'=>$slug)));
+			if(!empty($articleData)){
+				$this->set('articleData',$articleData);
+				//echo '<pre>'; print_r($articleData); die();
+			}else{
+				return $this->redirect(array('controller' => 'pages', 'action' => 'index','admin'=>false)); 
+			}
+		}else{
+			return $this->redirect(array('controller' => 'pages', 'action' => 'index','admin'=>false)); 
+		}
+	}
 }
 ?>

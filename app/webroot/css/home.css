@@ -18,6 +18,32 @@
 	font-size: 55px;
 	margin-top: 50px;
 }
+.article_container{
+	background-color: #ffffff;
+	padding: 25px 60px;
+	width: 100%;
+	margin-bottom:0px;
+}
+.content img{
+	width: 100%;
+}
+.content p{
+	font-size: 14px;
+    line-height: 24px;
+}
+.article_container .title{
+   margin-bottom: 30px;  	
+}
+.article_container .subheadline{
+   font-size: 16px;
+   line-height: 22px;
+   margin-bottom: 30px;  
+}
+.article_container .content{
+   font-size: 14px !important;
+   line-height: 18px !important;
+   margin-bottom: 30px;  
+}
 .portfolio-header {
   position: relative;
   background-image: url(images/header-bg.jpg);
